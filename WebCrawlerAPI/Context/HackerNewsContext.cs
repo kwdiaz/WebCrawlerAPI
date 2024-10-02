@@ -8,6 +8,7 @@ namespace WebCrawlerAPI.Context
         public HackerNewsContext(DbContextOptions<HackerNewsContext> options)
             : base(options) { }
 
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<EntryModel> Entries { get; set; }
         public DbSet<UsageDataModel> UsageData { get; set; }
     }

@@ -8,7 +8,7 @@ namespace WebCrawlerAPI.Services
 {
     public class HackerNewsCrawlerService
     {
-        // HttpClient and database context initialization
+     
         private readonly HttpClient _httpClient;
         private readonly HackerNewsContext _context;
 
@@ -138,9 +138,6 @@ namespace WebCrawlerAPI.Services
                 .OrderByDescending(e => e.Comments)
                 .ToList();
 
-            // Log usage data
-            LogUsageData("MoreThanFiveWords");
-
             return filteredEntries;
         }
 
@@ -153,8 +150,6 @@ namespace WebCrawlerAPI.Services
                 .OrderByDescending(e => e.Points)
                 .ToList();
 
-            // Log usage data
-            LogUsageData("LessThanOrEqualToFiveWords");
 
             return filteredEntries;
         }
@@ -162,13 +157,17 @@ namespace WebCrawlerAPI.Services
         // Method to log usage data
         public void LogUsageData(string filter, string userIdentifier = null)
         {
+
             var usageData = new UsageDataModel
             {
                 RequestTimestamp = DateTime.UtcNow,
                 AppliedFilter = filter,
+                UserIdentifier = userIdentifier, 
+               
             };
             _context.UsageData.Add(usageData);
             _context.SaveChanges();
         }
+
     }
 }

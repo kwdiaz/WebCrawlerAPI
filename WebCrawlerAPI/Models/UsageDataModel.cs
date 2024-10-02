@@ -5,5 +5,7 @@
         public int Id { get; set; }
         public DateTime RequestTimestamp { get; set; }
         public string? AppliedFilter { get; set; }
+        public string UserIdentifier { get; set; } 
+       
     }
 }
