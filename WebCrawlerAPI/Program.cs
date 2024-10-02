@@ -13,6 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HackerNewsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("HackerNewsDatabase")));
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000") // Cambia esto si usas un dominio diferente
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
+
 // Configure JWT authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -34,7 +43,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddControllers();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -67,9 +75,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -80,6 +85,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Add CORS middleware
+app.UseCors("AllowSpecificOrigin");
 
 // Add authentication and authorization middleware
 app.UseAuthentication();
