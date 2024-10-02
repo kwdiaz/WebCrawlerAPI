@@ -4,6 +4,8 @@ using WebCrawlerAPI.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
+
+//Add service: Add the database
 builder.Services.AddDbContext<HackerNewsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("HackerNewsDatabase")));
 
