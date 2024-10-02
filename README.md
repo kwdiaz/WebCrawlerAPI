@@ -102,7 +102,7 @@ The project uses SQL Server with the following tables:
          "HackerNewsDatabase": "Server=localhost; Database=HackerNewsDb; Integrated Security=True; Trusted_Connection=True; TrustServerCertificate=True;"
      }
    
-   - Or in case you have SSMS with credentials
+   - Or in case you have SSMS with username and password:
   
       ```json
          "ConnectionStrings": {
