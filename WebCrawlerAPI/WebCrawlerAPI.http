@@ -1,0 +1,6 @@
+@WebCrawlerAPI_HostAddress = http://localhost:5102
+
+GET {{WebCrawlerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
